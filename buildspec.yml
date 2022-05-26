@@ -9,9 +9,9 @@ phases:
       - REPOSITORY_URI=107298762296.dkr.ecr.us-east-1.amazonaws.com/codebuild-dinners
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - echo This is the commit hash.. $COMMIT_HASH
+      - echo "This is the commit hash: $(echo $COMMIT_HASH)"
       - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
-      - echo This is the image tag.. $IMAGE_TAG
+      - echo "This is the image tag: $(echo $IMAGE_TAG)"
   build:
     commands:
       - echo Build started on `date`
